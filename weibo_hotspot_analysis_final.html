@@ -1,0 +1,680 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微博热搜产品创意分析报告</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .date {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 10px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+        }
+        td {
+            padding: 15px 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        tr:hover {
+            background: #f8f9ff;
+        }
+        .rank {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 18px;
+        }
+        .hotspot-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .heatmap {
+            font-size: 12px;
+            color: #ff6b6b;
+        }
+        .event-summary {
+            color: #555;
+            line-height: 1.5;
+            max-height: 60px;
+            overflow: hidden;
+        }
+        .product-idea {
+            background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .product-name {
+            font-weight: bold;
+            color: #764ba2;
+            margin-bottom: 5px;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+        .score-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            min-width: 60px;
+        }
+        .score-high {
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
+        }
+        .score-medium {
+            background: linear-gradient(135deg, #ffb347, #ffcc33);
+        }
+        .score-low {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        }
+        .score-details {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .no-idea {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+        }
+        .stats {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .stat-item {
+            flex: 1;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .legend {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 微博热搜产品创意分析报告</h1>
+        <div class="date">2025年11月25日 16:07</div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">15</span>
+                <span class="stat-label">已分析热搜</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">7</span>
+                <span class="stat-label">优秀创意 (80+分)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">良好创意 (60-79分)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">12</span>
+                <span class="stat-label">产品创意</span>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color score-high"></div>
+                <span>优秀 (80-100分)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color score-medium"></div>
+                <span>良好 (60-79分)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color score-low"></div>
+                <span>一般 (<60分)</span>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%">排名</th>
+                    <th style="width: 20%">热点资讯</th>
+                    <th style="width: 25%">关键事件脉络</th>
+                    <th style="width: 30%">产品创意</th>
+                    <th style="width: 20%">综合评分</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td><span class="rank">#1</span></td>
+                    <td>
+                        <div class="hotspot-title">华为发布会</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">2025年11月25日，华为举办Mate80系列线上发布会，发布Mate80、Mate X7折叠屏及生态新品，搭载麒麟9030处理器、鸿蒙6.0系统、2.5D直屏等创新技术。</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">Mate亮点速查</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> AI语音实时解读发布会、核心参数可视化对照表、价格配置一图看懂、黑科技功能三分钟讲解、个性化需求匹配推荐<br>
+                                <strong>用户:</strong> 科技爱好者、潜在购机用户、数码博主、华为粉丝<br>
+                                <strong>描述:</strong> 华为Mate80发布会AI智能解读小程序，实时提取核心亮点，可视化参数对比，个性化推荐最适合的机型与配置，让用户3分钟看懂发布会精髓。
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-high">88分</div>
+                        <div class="score-details">
+                            有趣: 70分<br>
+                            有用: 18分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#2</span></td>
+                    <td>
+                        <div class="hotspot-title">高市早苗回应与特朗普通话</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">2025年11月，日本首相高市早苗因涉台言论被特朗普在通话中'教育'，中方同步施压，凸显日本在中美博弈中的尴尬处境，成为政治投机失败的典型案例。</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">政坛风云录 - 国际政治博弈模拟器</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> AI驱动的国际政治决策模拟系统、实时热点事件剧本推演功能、多角色视角切换、决策后果预测与评分机制、历史事件复盘与避坑指南<br>
+                                <strong>用户:</strong> 国际关系专业学生和研究者、对国际政治感兴趣的普通用户、企业海外市场决策者、地缘政治风险分析师<br>
+                                <strong>描述:</strong> 通过AI模拟国际政治决策过程，让用户扮演不同国家领导人，体验外交博弈的复杂性与戏剧性。高市早苗事件将收录为经典案例，展示战略冒进导致的'两头不讨好'窘境。
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-medium">76分</div>
+                        <div class="score-details">
+                            有趣: 68分<br>
+                            有用: 8分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#3</span></td>
+                    <td>
+                        <div class="hotspot-title">中国力争在宇宙黑暗时代等实现突破</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">2025年11月，中科院宣布鸿蒙计划，将用10颗绕月卫星探测宇宙黑暗时代信号，是人类首次尝试直接观测宇宙最早期的现象。</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">鸿蒙之声：宇宙原初信号体验器</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 将21厘米氢信号转化为可听声波与可视化动态图像、AR卫星轨道实时追踪与数据流展示、用户可调信号参数模拟不同宇宙时代的演变、社区创作平台让用户基于真实科学数据创作艺术内容<br>
+                                <strong>用户:</strong> 天文爱好者与科幻迷(18-45岁)、STEM教育师生(中学至大学)、科技产品早期体验者、寻求独特文化体验的城市白领<br>
+                                <strong>描述:</strong> 将中科院鸿蒙计划的宇宙黑暗时代探测信号，转化为可听可视的沉浸式体验，让用户用手机感受138亿年前宇宙第一缕光的回响，兼具科学严谨性与艺术震撼力。
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-high">83分</div>
+                        <div class="score-details">
+                            有趣: 75分<br>
+                            有用: 8分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#4</span></td>
+                    <td>
+                        <div class="hotspot-title">春节档 激烈</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">2025年春节档6部大片激战，《哪吒2》以48.39亿和口碑效应一家独大（最终154亿），《唐探1900》22.78亿紧随其后，档期总票房95.10亿创历史新高。</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">票神-春节档票房预测对战平台</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 实时票房数据可视化对比、每日票房预测对战游戏、影片口碑评分聚合（豆瓣、猫眼、微博）、社交化观影决策助手、积分排行榜和虚拟奖励<br>
+                                <strong>用户:</strong> 18-35岁电影爱好者、影迷、轻度赌博娱乐需求的用户<br>
+                                <strong>描述:</strong> 基于春节档真实票房数据的实时对战预测平台，用户可每日竞猜各影片票房排名，用积分兑换电影票补贴，让观影选择变得有趣又有价值。
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-high">80分</div>
+                        <div class="score-details">
+                            有趣: 68分<br>
+                            有用: 12分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#5</span></td>
+                    <td>
+                        <div class="hotspot-title">在日本留学中国学生发声</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">日本留学中国学生发声，涉及歧视话题和安全预警，政治敏感度中等偏上，实用价值有限</div>
+                    </td>
+                    <td>
+    <div class="no-idea">暂无可行产品创意<br><small>（评分较低或话题敏感）</small></div>
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-low">53分</div>
+                        <div class="score-details">
+                            有趣: 35分<br>
+                            有用: 18分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#6</span></td>
+                    <td>
+                        <div class="hotspot-title">神舟飞船任务标识首现TGYJ</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">神舟飞船任务标识首现TGYJ（天宫应急），神舟22号应急任务，航天科技类严肃话题</div>
+                    </td>
+                    <td>
+    <div class="no-idea">暂无可行产品创意<br><small>（评分较低或话题敏感）</small></div>
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-low">45分</div>
+                        <div class="score-details">
+                            有趣: 30分<br>
+                            有用: 15分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#7</span></td>
+                    <td>
+                        <div class="hotspot-title">也是逛上声生不息唐人街了</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">湖南卫视《声生不息》节目探访唐人街，文化娱乐类节目，传播华流音乐，娱乐性高</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">《声生不息》音游联动APP</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 探索全球唐人街文化的音乐社交应用，融合华流音乐与AR实景寻宝玩法<br>
+                                <strong>用户:</strong> 音乐爱好者、海外华人、文化探索者<br>
+                                <strong>描述:</strong> 基于湖南卫视《声生不息》唐人街特辑，开发探索全球唐人街文化的音乐社交应用
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-medium">78分</div>
+                        <div class="score-details">
+                            有趣: 70分<br>
+                            有用: 8分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#8</span></td>
+                    <td>
+                        <div class="hotspot-title">Mate80ProMAX</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">华为Mate80ProMAX旗舰机型配置顶级，华为旗舰新品</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">麒麟9030芯片U盘</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 以麒麟9030芯片为设计灵感的科技周边，内置Mate80使用教程<br>
+                                <strong>用户:</strong> 华为粉丝、科技收藏者<br>
+                                <strong>描述:</strong> 华为Mate80ProMAX旗舰机型配置顶级，科技周边收藏品
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-high">95分</div>
+                        <div class="score-details">
+                            有趣: 80分<br>
+                            有用: 15分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#9</span></td>
+                    <td>
+                        <div class="hotspot-title">Mate80价格</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">华为Mate80定价讨论，科技产品定价话题</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">华为Mate80价格计算器</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 实时对比各版本配置与价格，支持分期方案和性价比分析<br>
+                                <strong>用户:</strong> 潜在购机用户、价格敏感型消费者<br>
+                                <strong>描述:</strong> 在线计算器工具，帮助用户选择最适合的Mate80机型
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-high">90分</div>
+                        <div class="score-details">
+                            有趣: 75分<br>
+                            有用: 15分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#10</span></td>
+                    <td>
+                        <div class="hotspot-title">枭起青壤追剧团</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">迪丽热巴新剧《枭起青壤》热播，娱乐影视类</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">《枭起青壤》追剧团小程序</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 剧情讨论、角色投票、打戏回顾等互动功能<br>
+                                <strong>用户:</strong> 迪丽热巴粉丝、剧集观众<br>
+                                <strong>描述:</strong> 为热巴新剧定制的追剧社区小程序
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-medium">78分</div>
+                        <div class="score-details">
+                            有趣: 68分<br>
+                            有用: 10分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#11</span></td>
+                    <td>
+                        <div class="hotspot-title">Mate80隐藏彩蛋</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">华为Mate80隐藏功能揭秘</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">Mate80隐藏功能探索器</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 揭秘隐藏彩蛋功能，内置散热风扇说明、星环磁吸教程<br>
+                                <strong>用户:</strong> Mate80用户、科技探索者<br>
+                                <strong>描述:</strong> 揭秘华为Mate80隐藏彩蛋功能的工具应用
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-high">90分</div>
+                        <div class="score-details">
+                            有趣: 78分<br>
+                            有用: 12分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#12</span></td>
+                    <td>
+                        <div class="hotspot-title">华为Mate80</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">华为Mate80系列产品发布</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">华为Mate80系列</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 全产品线深度解析平台，包含各版本对比评测、麒麟9030性能测试<br>
+                                <strong>用户:</strong> 科技爱好者、潜在购机用户<br>
+                                <strong>描述:</strong> Mate80系列全产品线深度解析平台
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-high">98分</div>
+                        <div class="score-details">
+                            有趣: 80分<br>
+                            有用: 18分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#13</span></td>
+                    <td>
+                        <div class="hotspot-title">狂野时代 退票</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">电影《狂野时代》退票事件</div>
+                    </td>
+                    <td>
+    <div class="no-idea">暂无可行产品创意<br><small>（评分较低或话题敏感）</small></div>
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-low">53分</div>
+                        <div class="score-details">
+                            有趣: 45分<br>
+                            有用: 8分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#14</span></td>
+                    <td>
+                        <div class="hotspot-title">过度感谢 过度道歉</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">过度感谢与道歉的社交心理现象</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">社交心理诊断助手</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 分析过度道歉/感谢行为，提供心理评估报告和改善建议<br>
+                                <strong>用户:</strong> 社交焦虑人群、心理学爱好者<br>
+                                <strong>描述:</strong> 帮助用户建立健康社交边界的AI工具
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-medium">70分</div>
+                        <div class="score-details">
+                            有趣: 50分<br>
+                            有用: 20分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><span class="rank">#15</span></td>
+                    <td>
+                        <div class="hotspot-title">枭起青壤打戏</div>
+                        <div class="heatmap">🔥 热度: 🔥 0</div>
+                    </td>
+                    <td>
+                        <div class="event-summary">热巴《枭起青壤》打戏争议话题</div>
+                    </td>
+                    <td>
+    
+                        <div class="product-idea">
+                            <div class="product-name">《枭起青壤》打戏合集</div>
+                            <div class="product-desc">
+                                <strong>功能:</strong> 打戏精彩剪辑视频集，包含长镜头雨夜打戏、疯刀聂九罗名场面<br>
+                                <strong>用户:</strong> 剧集粉丝、动作戏爱好者<br>
+                                <strong>描述:</strong> 迪丽热巴《枭起青壤》打戏精彩剪辑视频集
+                            </div>
+                        </div>
+        
+                    </td>
+                    <td>
+    
+                        <div class="score-badge score-medium">73分</div>
+                        <div class="score-details">
+                            有趣: 65分<br>
+                            有用: 8分
+                        </div>
+        
+                    </td>
+                </tr>
+    
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

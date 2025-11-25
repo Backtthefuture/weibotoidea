@@ -1,0 +1,142 @@
+{
+  "total_tasks": 15,
+  "estimated_time": "约 12.0 分钟",
+  "pipeline_mode": true,
+  "workflow": [
+    {
+      "rank": 1,
+      "title": "Mate80价格",
+      "search_query": "Mate80价格 微博热搜 2025年11月",
+      "search_command": "/WebSearch Mate80价格 微博热搜 2025年11月",
+      "result_file": "search_results_01.json",
+      "analysis_file": "analysis_results_01.json",
+      "status": "pending"
+    },
+    {
+      "rank": 2,
+      "title": "麒麟9030",
+      "search_query": "麒麟9030 微博热搜 2025年11月",
+      "search_command": "/WebSearch 麒麟9030 微博热搜 2025年11月",
+      "result_file": "search_results_02.json",
+      "analysis_file": "analysis_results_02.json",
+      "status": "pending"
+    },
+    {
+      "rank": 3,
+      "title": "流感高发季防护指南来了",
+      "search_query": "流感高发季防护指南来了 微博热搜 2025年11月",
+      "search_command": "/WebSearch 流感高发季防护指南来了 微博热搜 2025年11月",
+      "result_file": "search_results_03.json",
+      "analysis_file": "analysis_results_03.json",
+      "status": "pending"
+    },
+    {
+      "rank": 4,
+      "title": "枭起青壤直播",
+      "search_query": "枭起青壤直播 微博热搜 2025年11月",
+      "search_command": "/WebSearch 枭起青壤直播 微博热搜 2025年11月",
+      "result_file": "search_results_04.json",
+      "analysis_file": "analysis_results_04.json",
+      "status": "pending"
+    },
+    {
+      "rank": 5,
+      "title": "iG Uzi",
+      "search_query": "iG Uzi 微博热搜 2025年11月",
+      "search_command": "/WebSearch iG Uzi 微博热搜 2025年11月",
+      "result_file": "search_results_05.json",
+      "analysis_file": "analysis_results_05.json",
+      "status": "pending"
+    },
+    {
+      "rank": 6,
+      "title": "北大医药直线涨停",
+      "search_query": "北大医药直线涨停 微博热搜 2025年11月",
+      "search_command": "/WebSearch 北大医药直线涨停 微博热搜 2025年11月",
+      "result_file": "search_results_06.json",
+      "analysis_file": "analysis_results_06.json",
+      "status": "pending"
+    },
+    {
+      "rank": 7,
+      "title": "25年是买手机最好的节点吗",
+      "search_query": "25年是买手机最好的节点吗 微博热搜 2025年11月",
+      "search_command": "/WebSearch 25年是买手机最好的节点吗 微博热搜 2025年11月",
+      "result_file": "search_results_07.json",
+      "analysis_file": "analysis_results_07.json",
+      "status": "pending"
+    },
+    {
+      "rank": 8,
+      "title": "春节档 激烈",
+      "search_query": "春节档 激烈 微博热搜 2025年11月",
+      "search_command": "/WebSearch 春节档 激烈 微博热搜 2025年11月",
+      "result_file": "search_results_08.json",
+      "analysis_file": "analysis_results_08.json",
+      "status": "pending"
+    },
+    {
+      "rank": 9,
+      "title": "枭起青壤打戏",
+      "search_query": "枭起青壤打戏 微博热搜 2025年11月",
+      "search_command": "/WebSearch 枭起青壤打戏 微博热搜 2025年11月",
+      "result_file": "search_results_09.json",
+      "analysis_file": "analysis_results_09.json",
+      "status": "pending"
+    },
+    {
+      "rank": 10,
+      "title": "Mate80ProMAX",
+      "search_query": "Mate80ProMAX 微博热搜 2025年11月",
+      "search_command": "/WebSearch Mate80ProMAX 微博热搜 2025年11月",
+      "result_file": "search_results_10.json",
+      "analysis_file": "analysis_results_10.json",
+      "status": "pending"
+    },
+    {
+      "rank": 11,
+      "title": "日本机场挤满回国的中国人",
+      "search_query": "日本机场挤满回国的中国人 微博热搜 2025年11月",
+      "search_command": "/WebSearch 日本机场挤满回国的中国人 微博热搜 2025年11月",
+      "result_file": "search_results_11.json",
+      "analysis_file": "analysis_results_11.json",
+      "status": "pending"
+    },
+    {
+      "rank": 12,
+      "title": "过度感谢 过度道歉",
+      "search_query": "过度感谢 过度道歉 微博热搜 2025年11月",
+      "search_command": "/WebSearch 过度感谢 过度道歉 微博热搜 2025年11月",
+      "result_file": "search_results_12.json",
+      "analysis_file": "analysis_results_12.json",
+      "status": "pending"
+    },
+    {
+      "rank": 13,
+      "title": "神二十二发射圆满成功",
+      "search_query": "神二十二发射圆满成功 微博热搜 2025年11月",
+      "search_command": "/WebSearch 神二十二发射圆满成功 微博热搜 2025年11月",
+      "result_file": "search_results_13.json",
+      "analysis_file": "analysis_results_13.json",
+      "status": "pending"
+    },
+    {
+      "rank": 14,
+      "title": "张俪迪丽热巴牵上手了",
+      "search_query": "张俪迪丽热巴牵上手了 微博热搜 2025年11月",
+      "search_command": "/WebSearch 张俪迪丽热巴牵上手了 微博热搜 2025年11月",
+      "result_file": "search_results_14.json",
+      "analysis_file": "analysis_results_14.json",
+      "status": "pending"
+    },
+    {
+      "rank": 15,
+      "title": "狂野时代 退票",
+      "search_query": "狂野时代 退票 微博热搜 2025年11月",
+      "search_command": "/WebSearch 狂野时代 退票 微博热搜 2025年11月",
+      "result_file": "search_results_15.json",
+      "analysis_file": "analysis_results_15.json",
+      "status": "pending"
+    }
+  ]
+}
