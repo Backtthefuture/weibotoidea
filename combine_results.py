@@ -7,7 +7,8 @@ import re
 def main():
     print("Combinining analysis results...")
     results = []
-    
+    results_dict = {}  # 用于去重
+
     # Ensure directory exists
     if not os.path.exists('analysis_results'):
         print("No analysis_results directory found.")
@@ -16,7 +17,7 @@ def main():
     # Pattern matching the agent's output
     files = glob.glob('analysis_results/result_*.json')
     print(f"Found {len(files)} result files.")
-    
+
     for f in sorted(files):
         try:
             with open(f, 'r', encoding='utf-8') as fd:
@@ -26,7 +27,7 @@ def main():
                     match = re.search(r'result_(\d+).json', f)
                     if match:
                         data['rank'] = int(match.group(1))
-                
+
                 # Merge title info and heat
                 rank = data.get('rank')
                 if rank:
@@ -37,7 +38,7 @@ def main():
                              sdata = json.load(sf)
                              if 'title' in sdata and 'title' not in data:
                                  data['title'] = sdata['title']
-                    
+
                     # Try to get heat from weibo_search_queries.json
                     try:
                         with open('weibo_search_queries.json', 'r', encoding='utf-8') as qf:
@@ -51,12 +52,21 @@ def main():
                     except Exception as e:
                         print(f"Error reading queries: {e}")
 
-                results.append(data)
+                # 使用 rank 作为键去重，只保留每个 rank 的最新数据
+                if rank:
+                    results_dict[rank] = data
+                else:
+                    results.append(data)
         except Exception as e:
             print(f"Skipping {f}: {e}")
-    
+
+    # 将去重后的结果转换为列表
+    results = list(results_dict.values())
+
     # Sort by rank
     results.sort(key=lambda x: x.get('rank', 999))
+
+    print(f"✅ 去重后保留 {len(results)} 条唯一结果")
     
     output_file = 'hotspot_analysis_results.json'
     with open(output_file, 'w', encoding='utf-8') as f:

@@ -46,51 +46,22 @@ jobs:
 
     - name: 合并分析结果并生成 HTML 报告
       run: |
-        echo "合并分析结果..."
-        python3 combine_results.py || echo "合并结果完成"
+        echo "步骤1: 合并分析结果..."
+        python3 combine_results.py
 
-        echo "生成 HTML 报告..."
-        python3 generate_apple_style_report.py || echo "报告生成完成"
+        echo "步骤2: 生成 HTML 报告..."
+        python3 generate_apple_style_report.py
 
-        # 查找生成的 HTML 文件并复制到根目录
-        if [ -d "output" ]; then
-          latest_html=$(ls -t output/*.html 2>/dev/null | head -1)
-          if [ -n "$latest_html" ]; then
-            cp "$latest_html" "微博热搜产品创意分析报告.html"
-            echo "✅ HTML 报告已生成: 微博热搜产品创意分析报告.html"
-          fi
-        fi
+        echo "步骤3: 生成智能首页和归档索引..."
+        python3 generate_index_pages.py
 
     - name: 检查生成的文件
       run: |
         echo "检查生成的文件..."
-        ls -lah *.html 2>/dev/null || echo "根目录未找到 HTML 文件"
-        ls -lah analysis_results/ 2>/dev/null || echo "analysis_results 目录为空"
-
-    - name: 复制 HTML 报告到输出目录
-      run: |
-        # 获取当前日期
-        DATE=$(date +%Y-%m-%d)
-
-        # 查找并复制所有生成的 HTML 文件
-        if [ -f "微博热搜产品创意分析报告.html" ]; then
-          cp "微博热搜产品创意分析报告.html" "analysis_results/index.html"
-          cp "微博热搜产品创意分析报告.html" "analysis_results/archive/${DATE}.html"
-          echo "✅ 已复制报告到 analysis_results/"
-        else
-          echo "⚠️ 未找到 HTML 报告文件"
-        fi
-
-        # 生成历史报告索引
-        cd analysis_results/archive
-        echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>微博热搜分析 - 历史报告</title></head><body>' > index.html
-        echo '<h1>微博热搜分析 - 历史报告</h1><ul>' >> index.html
-        for file in *.html; do
-          if [ "$file" != "index.html" ]; then
-            echo "<li><a href=\"$file\">$file</a></li>" >> index.html
-          fi
-        done
-        echo '</ul></body></html>' >> index.html
+        echo "=== 报告文件 ==="
+        ls -lh analysis_results/*.html 2>/dev/null || echo "未找到报告文件"
+        echo "=== 归档文件 ==="
+        ls -lh analysis_results/archive/*.html 2>/dev/null | head -5 || echo "未找到归档文件"
 
     - name: 部署到 GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
@@ -99,7 +70,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./analysis_results
         publish_branch: gh-pages
-        keep_files: false  # 每次清空后重新部署，避免累积过多历史文件
+        keep_files: true  # 保留历史文件，累积归档
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
         commit_message: '🤖 自动更新微博热搜分析报告'

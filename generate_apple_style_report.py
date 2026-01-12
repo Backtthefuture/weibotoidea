@@ -786,29 +786,40 @@ def main():
     print("\n【步骤3/3】生成苹果风格HTML报告...")
     html_content = generate_html_report(results, stats)
 
-    # 创建output目录（如果不存在）
-    output_dir = 'output'
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-        print(f"📁 已创建输出目录: {output_dir}")
+    # 创建 analysis_results/archive 目录（如果不存在）
+    archive_dir = 'analysis_results/archive'
+    if not os.path.exists(archive_dir):
+        os.makedirs(archive_dir)
+        print(f"📁 已创建输出目录: {archive_dir}")
 
-    # 生成带日期和时间戳的文件名
-    date_str = datetime.now().strftime('%Y%m%d_%H%M')
-    output_file = os.path.join(output_dir, f'weibo_hotspot_analysis_apple_{date_str}.html')
+    # 生成带日期和时间戳的文件名（格式：2026-01-12-09-00.html）
+    date_str = datetime.now().strftime('%Y-%m-%d-%H-%M')
+    archive_file = os.path.join(archive_dir, f'{date_str}.html')
+
+    # 最新报告的路径
+    latest_file = 'analysis_results/latest.html'
 
     try:
-        with open(output_file, 'w', encoding='utf-8') as f:
+        # 保存归档版本
+        with open(archive_file, 'w', encoding='utf-8') as f:
             f.write(html_content)
-        print(f"✅ HTML报告已保存: {output_file}")
+        print(f"✅ 归档报告已保存: {archive_file}")
+
+        # 保存最新版本
+        with open(latest_file, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+        print(f"✅ 最新报告已保存: {latest_file}")
+
     except Exception as e:
         print(f"❌ 保存失败: {e}")
         return 1
 
     print("\n" + "=" * 60)
     print("✅ 报告生成完成！")
-    print(f"\n📄 输出文件: {output_file}")
+    print(f"\n📄 归档文件: {archive_file}")
+    print(f"📄 最新文件: {latest_file}")
     print("\n💡 下一步:")
-    print(f"   在浏览器中打开 {output_file} 查看苹果风格报告")
+    print(f"   在浏览器中打开文件查看苹果风格报告")
     print("   点击 '按评分排序' 按钮可以对表格进行排序")
     print("=" * 60)
 
