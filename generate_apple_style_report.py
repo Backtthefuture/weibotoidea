@@ -792,8 +792,8 @@ def main():
         os.makedirs(output_dir)
         print(f"📁 已创建输出目录: {output_dir}")
 
-    # 生成带日期的文件名
-    date_str = datetime.now().strftime('%Y%m%d')
+    # 生成带日期和时间戳的文件名
+    date_str = datetime.now().strftime('%Y%m%d_%H%M')
     output_file = os.path.join(output_dir, f'weibo_hotspot_analysis_apple_{date_str}.html')
 
     try:

@@ -1,302 +1,328 @@
 [
   {
     "rank": 1,
-    "title": "日本自卫队被曝正在向西南转移",
-    "heat": 1131170,
-    "summary": "日本自卫队在2025年加速向西南诸岛部署军事力量，包括部署远程导弹、建立军事基地，专家认为日本长期觊觎台海局势，将西南诸岛打造成「不沉航母」群。",
-    "fun_score": 25,
-    "useful_score": 10,
-    "total_score": 35,
-    "has_idea": false,
-    "product": null,
-    "reason": "总分未达60分阈值。虽然话题关注度高，但属于严肃的军事政治话题，不适合开发有趣产品，实用性也有限。"
+    "title": "新一代SU7价格",
+    "heat": 1061448,
+    "summary": "小米汽车新一代SU7于2026年1月7日开启小订，起售价23.59万元，较上一代涨价约2万元。全系标配激光雷达和高阶辅助驾驶，预计4月上市。",
+    "fun_score": 72,
+    "useful_score": 18,
+    "total_score": 90,
+    "has_idea": true,
+    "product": {
+      "name": "车比比 - 智能购车决策助手",
+      "features": "AI对比同价位车型配置差异，可视化展示性价比",
+      "target_users": "准备购买新能源汽车的消费者",
+      "description": "一键输入预算，AI智能推荐最适合的新能源车型"
+    },
+    "is_deep_dive": true,
+    "deep_dive_ideas": [
+      {
+        "dimension": "日常生活",
+        "product_name": "车主养车账本",
+        "core_features": "记录充电、保养、保险等所有用车开销，AI预测月度用车成本",
+        "target_users": "新能源车主，尤其是首次购车的年轻人",
+        "unique_value": "让你清楚知道养一辆新能源车到底要花多少钱"
+      },
+      {
+        "dimension": "商务办公",
+        "product_name": "试驾日程管家",
+        "core_features": "一键预约多品牌试驾，自动规划试驾路线，AI生成试驾对比报告",
+        "target_users": "正在选车的商务人士和家庭购车决策者",
+        "unique_value": "高效完成多款车型试驾，让买车决策更理性"
+      },
+      {
+        "dimension": "社交娱乐",
+        "product_name": "车友圈实时情报",
+        "core_features": "车型专属社区，提车/改装/自驾分享，官方政策变动实时推送",
+        "target_users": "汽车爱好者和等车/提车的准车主",
+        "unique_value": "第一时间获取车型动态，和同好分享购车喜悦"
+      }
+    ]
   },
   {
     "rank": 2,
-    "title": "iPad中国市场份额大跌",
-    "heat": 540849,
-    "summary": "2025年Q3中国平板市场数据显示，华为以31%份额夺得第一，同比暴增21%；iPad出货量从230万跌至200万台，市场份额仅23%，下跌14%。国产品牌凭借更多折扣、多样化产品线和AI能力崛起。",
-    "fun_score": 45,
-    "useful_score": 15,
-    "total_score": 60,
-    "has_idea": true,
-    "product": {
-      "name": "平板换购助手",
-      "features": "智能比价、参数对比、AI推荐最优平板方案",
-      "target_users": "准备购买或换购平板电脑的用户",
-      "description": "整合各品牌平板参数、价格、评测，通过AI分析用户需求匹配最适合的产品，支持以旧换新估价"
-    }
+    "title": "英法德意等欧洲七国领导人联合声明",
+    "heat": 747871,
+    "summary": "七国领导人发表联合声明，强调格陵兰岛属于其人民，回应特朗普言论",
+    "fun_score": 35,
+    "useful_score": 12,
+    "total_score": 47,
+    "has_idea": false,
+    "product": null,
+    "reason": "国际政治话题，缺乏产品化空间",
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
   },
   {
     "rank": 3,
-    "title": "今年甲流常见问题看这里",
-    "heat": 376764,
-    "summary": "2025年甲流疫情快速上升，以甲型H3N2为主，5-14岁儿童高发。主要症状包括突发高热39℃以上、咳嗽咽痛、全身酸痛。需48小时内服用奥司他韦等抗病毒药物，疫苗免疫保护维持6-9个月建议每年接种。",
-    "fun_score": 35,
+    "title": "绿色消费20条与你我密切相关",
+    "heat": 611909,
+    "summary": "商务部等9部门联合发布绿色消费推进行动20条举措，涵盖新能源汽车补贴、绿色智能家电等",
+    "fun_score": 55,
     "useful_score": 20,
-    "total_score": 55,
-    "has_idea": false,
-    "product": null,
-    "reason": "总分未达60分阈值。健康类话题虽然实用但严肃性较强，趣味性不足，且市场上已有很多健康管理应用。"
+    "total_score": 75,
+    "has_idea": true,
+    "product": {
+      "name": "绿积分 - 绿色消费积分管家",
+      "features": "整合各平台绿色消费积分，一键查询可兑换优惠",
+      "target_users": "关注环保和省钱的年轻消费者",
+      "description": "帮你把绿色消费积分变成真金白银"
+    },
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
   },
   {
     "rank": 4,
-    "title": "理想AI眼镜Livis",
-    "heat": 373410,
-    "summary": "理想汽车联合蔡司将于12月3日发布AI眼镜Livis，支持翻译、识物、摄影摄像、听歌等AI功能，并可远程控制理想汽车（开门、启动空调、座椅加热等）。IDC预测2025年中国智能眼镜市场将迎来107%增长。",
-    "fun_score": 70,
-    "useful_score": 18,
-    "total_score": 88,
+    "title": "武大靖自曝从床爬到洗手间要半小时",
+    "heat": 545067,
+    "summary": "短道速滑名将武大靖宣布退役，自曝腰伤严重时生活不能自理，曾获两枚冬奥会金牌",
+    "fun_score": 58,
+    "useful_score": 15,
+    "total_score": 73,
     "has_idea": true,
-    "is_deep_dive": true,
-    "product_ideas": [
-      {
-        "name": "AR生活助手眼镜",
-        "dimension": "日常生活增强",
-        "features": "实时翻译字幕、卡路里识别、物品价格比价、导航AR箭头",
-        "target_users": "都市白领、旅行者、健身爱好者",
-        "description": "将AI眼镜打造成全天候生活助手，走在街上自动识别餐厅菜单并翻译，看到食物显示营养信息，扫商品自动比价推荐",
-        "unique_value": "解放双手的同时获得超能力般的信息增强体验"
-      },
-      {
-        "name": "智能会议记录眼镜",
-        "dimension": "商务办公场景",
-        "features": "AI实时记录会议纪要、识别发言人、生成待办事项、多语言字幕",
-        "target_users": "职场人士、会议主持者、跨国企业员工",
-        "description": "眼镜自动识别会议中的关键信息、决策点和行动项，会后一键生成完整会议纪要和任务清单，支持多人发言识别",
-        "unique_value": "彻底解放会议中的笔记负担，让用户专注于讨论本身"
-      },
-      {
-        "name": "亲子互动AR眼镜",
-        "dimension": "教育娱乐",
-        "features": "AR故事投影、互动游戏、学习卡片识别、安全区域监控",
-        "target_users": "年轻父母、3-12岁儿童家庭",
-        "description": "父母戴眼镜可以为孩子投影AR故事场景，识别学习卡片显示3D动画，设定儿童安全活动范围并实时提醒",
-        "unique_value": "将科技与亲子陪伴结合，创造独特的家庭互动体验"
-      }
-    ]
+    "product": {
+      "name": "运动康护日记",
+      "features": "记录运动伤病康复过程，AI提供康复建议",
+      "target_users": "运动爱好者、职业运动员、康复期患者",
+      "description": "科学记录和管理运动损伤"
+    },
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
   },
   {
     "rank": 5,
-    "title": "疯狂动物城2中国票房惊呆外媒",
-    "heat": 292895,
-    "summary": "《疯狂动物城2》上映5天票房突破19亿元，单日票房7.3亿创进口片纪录，预测总票房将达42.63亿元超过《复联4》成进口片总冠军。中国内地票房2.74亿美元超越北美成全球第一大票仓。",
-    "fun_score": 55,
-    "useful_score": 12,
-    "total_score": 67,
-    "has_idea": true,
-    "product": {
-      "name": "观影决策小助手",
-      "features": "实时票房追踪、影评聚合、最佳场次推荐、周边影院比价",
-      "target_users": "电影爱好者、纠结选片的观众",
-      "description": "聚合票房数据、影评、排片信息，用AI帮你决定「值不值得看」和「什么时候看最划算」"
-    }
-  },
-  {
-    "rank": 6,
-    "title": "富勒姆4比5曼城",
-    "heat": 280082,
-    "summary": "2025年12月3日英超第14轮，曼城客场5-4战胜富勒姆，哈兰德打入英超第100球创造历史纪录，曼城延续对富勒姆19连胜。这场比赛进球数多达9个，展现了精彩的进攻对抗。",
-    "fun_score": 62,
-    "useful_score": 10,
-    "total_score": 72,
-    "has_idea": true,
-    "product": {
-      "name": "足球比分预测游戏",
-      "features": "赛前预测比分、AI推荐、竞猜排行榜、实时比分推送",
-      "target_users": "足球迷、体育博彩爱好者",
-      "description": "玩家在赛前预测比分，根据准确度获得积分，与好友PK预测能力，增加观赛乐趣"
-    }
-  },
-  {
-    "rank": 7,
-    "title": "12306回应取消靠窗选座",
-    "heat": 279829,
-    "summary": "12306优化选座界面，将A/F座位的「窗」字改为竖线标识，官方回应称A/F仍是靠窗侧座位但不一定正对窗户，可能在窗前或窗后。此举是为避免用户误解「靠窗」含义。",
-    "fun_score": 68,
-    "useful_score": 18,
-    "total_score": 86,
-    "has_idea": true,
-    "is_deep_dive": true,
-    "product_ideas": [
-      {
-        "name": "火车座位真实评价社区",
-        "dimension": "众包内容社区",
-        "features": "用户上传座位照片、窗景评分、噪音等级、邻座体验分享",
-        "target_users": "高铁/火车常旅客、注重出行体验的乘客",
-        "description": "类似\"大众点评\"的火车座位评价平台，乘客分享每个车次、车厢、座位的真实体验，包括窗景质量、是否对窗、噪音大小、空调强度等",
-        "unique_value": "用真实用户体验打破12306的信息不对称，让选座有据可依"
-      },
-      {
-        "name": "列车座位3D可视化选座系统",
-        "dimension": "技术创新工具",
-        "features": "车厢3D建模、座位视角预览、窗景模拟、VR选座体验",
-        "target_users": "所有购买火车票的用户",
-        "description": "基于真实车厢数据建立3D模型，用户选座时可以360度查看座位周围环境、窗户位置、过道距离，甚至模拟窗外风景",
-        "unique_value": "将选座从2D平面图升级到沉浸式3D体验，所见即所得"
-      },
-      {
-        "name": "智能选座推荐引擎",
-        "dimension": "AI个性化服务",
-        "features": "基于用户偏好推荐最佳座位、历史数据分析、座位性价比评分",
-        "target_users": "追求性价比和舒适度的乘客",
-        "description": "AI学习用户历史选座习惯（喜欢靠窗/过道、安静/热闹等），结合大数据分析各座位的优缺点，自动推荐最适合的座位组合",
-        "unique_value": "让选座从碰运气变成科学决策，每次都坐到最满意的位置"
-      }
-    ]
-  },
-  {
-    "rank": 8,
-    "title": "我的百年人生计划",
-    "heat": 279367,
-    "summary": "该话题涉及个人长期人生规划和目标设定的讨论，反映当代年轻人对人生发展的思考和焦虑。",
-    "fun_score": 65,
-    "useful_score": 16,
-    "total_score": 81,
-    "has_idea": true,
-    "is_deep_dive": true,
-    "product_ideas": [
-      {
-        "name": "人生模拟器",
-        "dimension": "游戏化人生规划",
-        "features": "多维度人生模拟、决策影响预测、平行人生对比、成就系统",
-        "target_users": "20-35岁思考人生方向的年轻人",
-        "description": "像玩游戏一样规划人生，输入当前状态和可能的选择（换工作、深造、创业等），AI模拟不同选择在10年、30年、50年后的可能结果",
-        "unique_value": "用游戏化方式降低人生规划的焦虑感，在虚拟世界中试错"
-      },
-      {
-        "name": "人生留声机",
-        "dimension": "记忆存档与传承",
-        "features": "语音日记、重要时刻视频、AI生成人生纪录片、家族故事传承",
-        "target_users": "所有年龄段的用户、特别是中老年人",
-        "description": "记录人生的语音日记和重要时刻，AI自动整理成时间轴，在特定年龄（50岁、70岁、100岁）自动生成人生纪录片，传承给后代",
-        "unique_value": "将碎片化的记忆转化为可传承的人生故事，给未来的自己和后代留下宝贵财富"
-      },
-      {
-        "name": "人生教练AI",
-        "dimension": "个性化成长陪伴",
-        "features": "AI人生导师、目标拆解与追踪、每日反思引导、人生阶段提醒",
-        "target_users": "追求自我成长的各年龄段用户",
-        "description": "AI扮演人生教练角色，帮助用户设定清晰的人生目标，将百年计划拆解成年度、月度、周度任务，每天引导反思进度",
-        "unique_value": "让每个人都拥有一个24小时在线的人生导师，持续陪伴成长"
-      }
-    ]
-  },
-  {
-    "rank": 9,
-    "title": "老人腹泻离世儿子睡其床后确诊同症",
-    "heat": 279304,
-    "summary": "浙江86岁老人因蜱虫叮咬感染新型布尼亚病毒离世，儿子按习俗睡母亲床铺后，通过接触残留分泌物经破损皮肤感染同种病毒。该病毒可引起多器官衰竭，暂无特效药，需早期对症治疗。",
-    "fun_score": 20,
-    "useful_score": 18,
-    "total_score": 38,
-    "has_idea": false,
-    "product": null,
-    "reason": "总分未达60分阈值。虽然有一定的健康教育价值，但话题过于沉重悲伤，不适合开发娱乐性产品。"
-  },
-  {
-    "rank": 10,
-    "title": "台湾一旦沦为战场什么都是空谈",
-    "heat": 274883,
-    "summary": "2025年11月30日台湾秋斗游行中，郑丽文发表讲话呼吁台湾人捍卫和平，批评当局增加防务预算，强调若台湾成为战场一切都是空谈。反映两岸关系紧张背景下台湾内部的和平呼声。",
-    "fun_score": 15,
-    "useful_score": 8,
-    "total_score": 23,
-    "has_idea": false,
-    "product": null,
-    "reason": "总分未达60分阈值。严肃政治话题，不具备产品开发的趣味性和可行性。"
-  },
-  {
-    "rank": 11,
-    "title": "小米高管疑似集体遭遇短信轰炸",
-    "heat": 215885,
-    "summary": "2025年12月2日，小米多位高管包括徐洁云、神得强、李肖爽等人在短时间内收到数十条验证码短信。专家指出这是通过劫持网站短信接口实现的短信轰炸攻击，可通过运营商应急通信保障服务防护。",
-    "fun_score": 58,
-    "useful_score": 20,
-    "total_score": 78,
-    "has_idea": true,
-    "product": {
-      "name": "短信防护盾",
-      "features": "AI识别验证码轰炸、一键屏蔽、异常流量告警、应急模式快速启动",
-      "target_users": "手机用户、企业高管、公众人物",
-      "description": "智能检测短时间内大量验证码，自动启动防护模式，一键联系运营商开启应急保障，保护用户免受短信轰炸"
-    }
-  },
-  {
-    "rank": 12,
-    "title": "美军压境委内瑞拉总统大跳热舞",
-    "heat": 209147,
-    "summary": "2025年12月1日，面对美国军舰在加勒比海施压，委内瑞拉总统马杜罗在首都加拉加斯集会上带头跳舞呼吁和平，高喊「永不为殖民地！永不为奴！」特朗普此前电话威胁若不下台将考虑使用军事力量。",
-    "fun_score": 72,
-    "useful_score": 8,
-    "total_score": 80,
-    "has_idea": true,
-    "is_deep_dive": true,
-    "product_ideas": [
-      {
-        "name": "新闻娱乐化引擎",
-        "dimension": "内容创作工具",
-        "features": "AI识别新闻中的搞笑片段、自动生成短视频、魔性BGM匹配、病毒式传播优化",
-        "target_users": "自媒体创作者、短视频博主",
-        "description": "AI自动扫描全球新闻，识别具有娱乐潜力的严肃内容（如领导人的搞笑瞬间），一键生成短视频、表情包、鬼畜视频等",
-        "unique_value": "让严肃新闻变得有趣易传播，降低内容创作门槛"
-      },
-      {
-        "name": "全球政治事件趣味科普",
-        "dimension": "教育娱乐APP",
-        "features": "政治事件动画化、领导人角色扮演游戏、互动式国际关系学习",
-        "target_users": "对国际政治感兴趣的年轻用户、学生",
-        "description": "用动画、游戏、表情包等轻松方式讲解复杂的国际政治事件，比如\"委内瑞拉危机\"变成互动故事，用户扮演不同角色理解事件",
-        "unique_value": "将枯燥的国际政治变成有趣的学习体验，提升年轻人的国际视野"
-      },
-      {
-        "name": "实时热点梗图生成器",
-        "dimension": "社交娱乐工具",
-        "features": "AI实时监控全球热点、自动生成梗图、表情包定制、社交分享优化",
-        "target_users": "社交媒体活跃用户、表情包收藏爱好者",
-        "description": "AI实时抓取全球热点事件的搞笑瞬间，自动生成各种风格的表情包和梗图，用户可以一键自定义文字和风格",
-        "unique_value": "永远比朋友圈快一步，第一时间拥有最新最热的梗图"
-      }
-    ]
-  },
-  {
-    "rank": 13,
-    "title": "Uzi邀请Wayward试训",
-    "heat": 207039,
-    "summary": "英雄联盟传奇选手Uzi在直播中与前职业选手Wayward互动并邀请双排，Wayward表示若队伍中有Uzi会毫不犹豫加入。这一互动引发电竞粉丝热议，期待Uzi重返职业赛场的可能性。",
-    "fun_score": 64,
-    "useful_score": 12,
-    "total_score": 76,
-    "has_idea": true,
-    "product": {
-      "name": "电竞梦之队组队器",
-      "features": "梦幻阵容搭建、战力值预测、选手数据对比、粉丝投票",
-      "target_users": "电竞爱好者、LOL玩家",
-      "description": "让粉丝自由组建梦想战队，AI预测战队实力和化学反应，社区投票选出最受期待组合"
-    }
-  },
-  {
-    "rank": 14,
-    "title": "日本战争准备曝光",
-    "heat": 202231,
-    "summary": "2025年12月2日央视报道，日本投入防卫预算研发「万能血浆」、制定战俘处理法律、将民用港口改造为军民两用设施。2025财年防卫支出达11万亿日元（约4982亿人民币），连续13年增长，防卫费占GDP达2%。",
-    "fun_score": 22,
-    "useful_score": 12,
-    "total_score": 34,
-    "has_idea": false,
-    "product": null,
-    "reason": "总分未达60分阈值。严肃军事政治话题，缺乏趣味性，不适合产品开发。"
-  },
-  {
-    "rank": 15,
-    "title": "华裔女子痔疮手术后不堪剧痛自杀",
-    "heat": 198996,
-    "summary": "加拿大多伦多59岁华裔女子林梅在Dr. Maharaj处接受两次痔疮激光手术后遭受18个月持续剧痛，体重从160磅暴跌至80磅，最终因无法忍受痛苦自杀。该医生被曝曾遭12名患者投诉未经同意进行手术。",
+    "title": "雀巢奶粉",
+    "heat": 412356,
+    "summary": "雀巢公司因供应商原料质量问题，在欧洲多国预防性召回婴儿配方奶粉",
     "fun_score": 25,
     "useful_score": 18,
     "total_score": 43,
     "has_idea": false,
     "product": null,
-    "reason": "总分未达60分阈值。虽然揭示了医疗监管问题具有社会价值，但话题过于沉重悲伤，不适合产品开发。"
+    "reason": "负面新闻事件，不适合做趣味产品",
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
+  },
+  {
+    "rank": 6,
+    "title": "嫌98元车费太贵司机和乘客耗到天亮",
+    "heat": 406074,
+    "summary": "乘客嫌98元网约车车费太贵与司机僵持到天亮，引发网友热议",
+    "fun_score": 70,
+    "useful_score": 12,
+    "total_score": 82,
+    "has_idea": true,
+    "product": {
+      "name": "出行预估神器",
+      "features": "出发前显示多平台预估价格对比，历史同路线价格参考",
+      "target_users": "经常打车的上班族和商务人士",
+      "description": "上车前就知道大概花多少钱"
+    },
+    "is_deep_dive": true,
+    "deep_dive_ideas": [
+      {
+        "dimension": "日常生活",
+        "product_name": "打车比价雷达",
+        "core_features": "输入起终点，显示滴滴/高德/曹操等全平台实时价格",
+        "target_users": "对价格敏感的日常打车用户",
+        "unique_value": "一眼看清哪个平台最便宜，省钱省心"
+      },
+      {
+        "dimension": "商务办公",
+        "product_name": "差旅费用预算器",
+        "core_features": "出差行程规划，交通费用预估和比价，自动生成报销清单",
+        "target_users": "经常出差的商务人士",
+        "unique_value": "差旅预算精准可控，报销流程一键完成"
+      },
+      {
+        "dimension": "教育科普",
+        "product_name": "出行经济学课堂",
+        "core_features": "用趣味案例解释网约车定价机制、动态调价原理",
+        "target_users": "对经济学感兴趣的年轻用户",
+        "unique_value": "从打车这件小事学会生活中的经济学思维"
+      }
+    ]
+  },
+  {
+    "rank": 7,
+    "title": "委内瑞拉发布讣告",
+    "heat": 338078,
+    "summary": "美国对委内瑞拉发动军事打击，逮捕总统马杜罗夫妇，引发国际强烈反应",
+    "fun_score": 20,
+    "useful_score": 8,
+    "total_score": 28,
+    "has_idea": false,
+    "product": null,
+    "reason": "战争与政治冲突话题，不适合产品化",
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
+  },
+  {
+    "rank": 8,
+    "title": "鹅鸭杀",
+    "heat": 306436,
+    "summary": "鹅鸭杀正版手游于2026年1月7日正式公测，预约量突破1000万，TapTap期待值9.7分",
+    "fun_score": 78,
+    "useful_score": 8,
+    "total_score": 86,
+    "has_idea": true,
+    "product": {
+      "name": "狼人开黑帮",
+      "features": "智能匹配同水平玩家组队，语音陪玩预约，角色攻略AI助手",
+      "target_users": "喜欢社交推理游戏的年轻玩家",
+      "description": "再也不用担心找不到靠谱队友"
+    },
+    "is_deep_dive": true,
+    "deep_dive_ideas": [
+      {
+        "dimension": "日常生活",
+        "product_name": "游戏搭子匹配",
+        "core_features": "根据游戏类型、在线时间、语音习惯智能匹配队友",
+        "target_users": "独自玩推理游戏找不到人的社恐玩家",
+        "unique_value": "让每一局游戏都有靠谱的队友陪伴"
+      },
+      {
+        "dimension": "商务办公",
+        "product_name": "团建游戏策划师",
+        "core_features": "适合公司团建的游戏推荐，一键生成游戏规则说明",
+        "target_users": "企业HR和活动策划人员",
+        "unique_value": "让公司团建不再无聊，用游戏拉近同事关系"
+      },
+      {
+        "dimension": "社交娱乐",
+        "product_name": "推理之王训练营",
+        "core_features": "逻辑推理能力测试，发言技巧教学视频，经典局复盘分析",
+        "target_users": "想提升游戏水平的玩家",
+        "unique_value": "从推理小白成长为鹅鸭杀大神"
+      }
+    ]
+  },
+  {
+    "rank": 9,
+    "title": "医院通报收费员玩手机致多人排队",
+    "heat": 249590,
+    "summary": "四川甘洛县人民医院收费员上班玩手机，已对涉事员工待岗处理并致歉",
+    "fun_score": 45,
+    "useful_score": 15,
+    "total_score": 60,
+    "has_idea": true,
+    "product": {
+      "name": "就医排队透明器",
+      "features": "实时显示各窗口排队人数、预计等待时间",
+      "target_users": "需要去医院办理缴费、取药的患者",
+      "description": "让医院排队不再盲等"
+    },
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
+  },
+  {
+    "rank": 10,
+    "title": "鹅鸭杀登顶iOS免费榜",
+    "heat": 187448,
+    "summary": "鹅鸭杀手游公测首日即登顶iOS免费榜第一，下载量达32万",
+    "fun_score": 75,
+    "useful_score": 6,
+    "total_score": 81,
+    "has_idea": true,
+    "product": {
+      "name": "游戏榜单追踪",
+      "features": "实时追踪各平台游戏排行榜变化，新游上线提醒",
+      "target_users": "游戏爱好者、游戏主播、游戏行业从业者",
+      "description": "第一时间发现爆款游戏"
+    },
+    "is_deep_dive": true,
+    "deep_dive_ideas": [
+      {
+        "dimension": "日常生活",
+        "product_name": "爆款游戏雷达",
+        "core_features": "多平台榜单聚合，游戏热度趋势图，新游上线日历提醒",
+        "target_users": "喜欢尝鲜新游戏的玩家",
+        "unique_value": "不再错过任何一款爆款游戏"
+      },
+      {
+        "dimension": "商务办公",
+        "product_name": "游戏投资风向标",
+        "core_features": "游戏公司财报解读，热门游戏商业数据分析",
+        "target_users": "游戏行业投资人和从业者",
+        "unique_value": "用数据发现下一个游戏行业黑马"
+      },
+      {
+        "dimension": "创作变现",
+        "product_name": "游戏UP主选题助手",
+        "core_features": "热门游戏话题分析，流量预测，爆款标题生成器",
+        "target_users": "游戏内容创作者和主播",
+        "unique_value": "找到最有流量的选题，提升视频播放量"
+      }
+    ]
+  },
+  {
+    "rank": 11,
+    "title": "林屿森女儿 李雾女儿",
+    "heat": 187307,
+    "summary": "热播剧骄阳似我剧情引发讨论，由宋威龙、赵今麦主演",
+    "fun_score": 52,
+    "useful_score": 5,
+    "total_score": 57,
+    "has_idea": false,
+    "product": null,
+    "reason": "电视剧剧情讨论，话题时效性短",
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
+  },
+  {
+    "rank": 12,
+    "title": "委内瑞拉或将移交3000至5000万桶石油",
+    "heat": 184696,
+    "summary": "委内瑞拉局势变化后，市场关注其石油储量的未来走向",
+    "fun_score": 25,
+    "useful_score": 12,
+    "total_score": 37,
+    "has_idea": false,
+    "product": null,
+    "reason": "地缘政治与能源话题，缺乏互动性",
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
+  },
+  {
+    "rank": 13,
+    "title": "赵恩达 内娱00后浓颜帅哥上新了",
+    "heat": 184154,
+    "summary": "00后男演员赵恩达因帅气外形引发关注，被网友称为内娱浓颜帅哥新代表",
+    "fun_score": 48,
+    "useful_score": 3,
+    "total_score": 51,
+    "has_idea": false,
+    "product": null,
+    "reason": "纯娱乐八卦话题，商业价值有限",
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
+  },
+  {
+    "rank": 14,
+    "title": "骄阳似我女主第一人选赵今麦",
+    "heat": 181443,
+    "summary": "电视剧骄阳似我由赵今麦担任女主角，2025年12月22日开播",
+    "fun_score": 50,
+    "useful_score": 4,
+    "total_score": 54,
+    "has_idea": false,
+    "product": null,
+    "reason": "娱乐选角话题，时效性短",
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
+  },
+  {
+    "rank": 15,
+    "title": "大宋奇闻录官宣",
+    "heat": 181122,
+    "summary": "古装剧大宋奇闻录官宣阵容或开机消息，2026年古装剧市场竞争激烈",
+    "fun_score": 45,
+    "useful_score": 5,
+    "total_score": 50,
+    "has_idea": false,
+    "product": null,
+    "reason": "电视剧官宣资讯，缺乏产品化空间",
+    "is_deep_dive": false,
+    "deep_dive_ideas": []
   }
 ]

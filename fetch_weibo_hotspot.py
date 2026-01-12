@@ -13,10 +13,18 @@ import requests
 import json
 import sys
 import re
+import os
 from datetime import datetime
 
+# 从环境变量获取天行数据 API Key
+TIANXING_API_KEY = os.environ.get('TIANXING_API_KEY')
+if not TIANXING_API_KEY:
+    print("❌ 错误: 未找到环境变量 TIANXING_API_KEY")
+    print("请设置环境变量: export TIANXING_API_KEY='your_api_key'")
+    sys.exit(1)
+
 # 天行数据微博热搜API
-WEIBO_HOT_URL = "https://apis.tianapi.com/weibohot/index?key=c96a7333c975965e491ff49466a1844b"
+WEIBO_HOT_URL = f"https://apis.tianapi.com/weibohot/index?key={TIANXING_API_KEY}"
 
 
 def fetch_weibo_hotspot():

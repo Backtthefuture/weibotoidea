@@ -1,0 +1,99 @@
+name: 微博热搜每日分析
+
+on:
+  # 定时任务 - 每天北京时间上午9:00、下午4:00和晚上9:00（UTC时间1:00、8:00和13:00）
+  schedule:
+    - cron: '0 1 * * *'   # 北京时间 09:00
+    - cron: '0 8 * * *'   # 北京时间 16:00
+    - cron: '0 13 * * *'  # 北京时间 21:00
+
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout 代码
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # 获取完整历史，便于后续操作
+
+    - name: 设置 Python 环境
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'  # 自动缓存 pip 依赖
+
+    - name: 安装依赖
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: 创建输出目录
+      run: |
+        mkdir -p analysis_results/archive
+
+    - name: 运行微博热搜分析
+      env:
+        TIANXING_API_KEY: ${{ secrets.TIANXING_API_KEY }}
+        ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
+        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+      run: |
+        echo "开始执行微博热搜分析..."
+        python3 run_weibo_agent.py
+
+    - name: 检查生成的文件
+      run: |
+        echo "检查生成的文件..."
+        ls -lah *.html 2>/dev/null || echo "根目录未找到 HTML 文件"
+        ls -lah analysis_results/ 2>/dev/null || echo "analysis_results 目录为空"
+
+    - name: 复制 HTML 报告到输出目录
+      run: |
+        # 获取当前日期
+        DATE=$(date +%Y-%m-%d)
+
+        # 查找并复制所有生成的 HTML 文件
+        if [ -f "微博热搜产品创意分析报告.html" ]; then
+          cp "微博热搜产品创意分析报告.html" "analysis_results/index.html"
+          cp "微博热搜产品创意分析报告.html" "analysis_results/archive/${DATE}.html"
+          echo "✅ 已复制报告到 analysis_results/"
+        else
+          echo "⚠️ 未找到 HTML 报告文件"
+        fi
+
+        # 生成历史报告索引
+        cd analysis_results/archive
+        echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>微博热搜分析 - 历史报告</title></head><body>' > index.html
+        echo '<h1>微博热搜分析 - 历史报告</h1><ul>' >> index.html
+        for file in *.html; do
+          if [ "$file" != "index.html" ]; then
+            echo "<li><a href=\"$file\">$file</a></li>" >> index.html
+          fi
+        done
+        echo '</ul></body></html>' >> index.html
+
+    - name: 部署到 GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: success()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./analysis_results
+        publish_branch: gh-pages
+        keep_files: false  # 每次清空后重新部署，避免累积过多历史文件
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: '🤖 自动更新微博热搜分析报告'
+
+    - name: 报告状态
+      if: always()
+      run: |
+        if [ -f "analysis_results/index.html" ]; then
+          echo "✅ 分析完成！报告已生成并部署"
+          echo "📊 查看报告: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+        else
+          echo "❌ 分析失败或未生成报告"
+          exit 1
+        fi
