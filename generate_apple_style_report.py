@@ -7,7 +7,7 @@
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def load_analysis_results():
@@ -793,7 +793,9 @@ def main():
         print(f"📁 已创建输出目录: {archive_dir}")
 
     # 生成带日期和时间戳的文件名（格式：2026-01-12-09-00.html）
-    date_str = datetime.now().strftime('%Y-%m-%d-%H-%M')
+    # 使用北京时间（UTC+8）
+    beijing_time = datetime.utcnow() + timedelta(hours=8)
+    date_str = beijing_time.strftime('%Y-%m-%d-%H-%M')
     archive_file = os.path.join(archive_dir, f'{date_str}.html')
 
     # 最新报告的路径
