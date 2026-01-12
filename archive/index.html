@@ -1,4 +1,166 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>微博热搜分析 - 历史报告</title></head><body>
-<h1>微博热搜分析 - 历史报告</h1><ul>
-<li><a href="2026-01-12.html">2026-01-12.html</a></li>
-</ul></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微博热搜分析 - 历史报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .date-group {
+            margin-bottom: 30px;
+        }
+
+        .date-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .report-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .report-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .report-item:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .report-time {
+            font-size: 18px;
+            font-weight: 600;
+            margin-right: 15px;
+            min-width: 60px;
+        }
+
+        .report-label {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-right: 15px;
+        }
+
+        .report-item:hover .report-label {
+            background: white;
+            color: #667eea;
+        }
+
+        .report-date {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state svg {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-link">← 返回首页</a>
+
+        <div class="header">
+            <h1>📚 历史报告归档</h1>
+            <p>浏览所有微博热搜分析报告</p>
+        </div>
+
+        <div class="date-group">
+            <div class="date-title">📅 2026年01月12日</div>
+            <div class="report-list">
+
+                <a href="2026-01-12-08-45.html" class="report-item">
+                    <div class="report-time">08:45</div>
+                    <span class="report-label">早报</span>
+                    <div class="report-date">2026-01-12 08:45</div>
+                </a>
+
+                <a href="2026-01-12-08-44.html" class="report-item">
+                    <div class="report-time">08:44</div>
+                    <span class="report-label">早报</span>
+                    <div class="report-date">2026-01-12 08:44</div>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
