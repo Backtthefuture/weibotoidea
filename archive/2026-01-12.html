@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微博热搜产品创意分析 - 2026年01月12日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            padding: 60px 20px;
+            line-height: 1.47059;
+            font-size: 17px;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.005em;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+            line-height: 1.07143;
+        }
+
+        .subtitle {
+            font-size: 21px;
+            font-weight: 400;
+            color: #6e6e73;
+            letter-spacing: 0.011em;
+            line-height: 1.381;
+        }
+
+        /* Stats Cards */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 32px 28px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #0071e3;
+            line-height: 1.0;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 17px;
+            color: #6e6e73;
+            font-weight: 400;
+        }
+
+        /* Methodology */
+        .methodology {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .methodology h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 24px;
+            letter-spacing: -0.003em;
+        }
+
+        .score-weights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .weight-item {
+            background: #f5f5f7;
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .weight-item strong {
+            display: block;
+            font-size: 19px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .weight-description {
+            font-size: 15px;
+            color: #6e6e73;
+            line-height: 1.4;
+        }
+
+        .threshold-note {
+            margin-top: 24px;
+            padding: 20px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            font-size: 15px;
+            color: #6e6e73;
+            line-height: 1.4;
+        }
+
+        /* Table Container */
+        .table-wrapper {
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .table-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid #d2d2d7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .sort-button {
+            background: #0071e3;
+            color: #ffffff;
+            border: none;
+            border-radius: 980px;
+            padding: 8px 20px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sort-button:hover {
+            background: #0077ed;
+            transform: scale(1.02);
+        }
+
+        .sort-button:active {
+            transform: scale(0.98);
+        }
+
+        .sort-icon {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sort-button.desc .sort-icon {
+            transform: rotate(180deg);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f5f5f7;
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6e6e73;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 1px solid #d2d2d7;
+        }
+
+        td {
+            padding: 24px 20px;
+            border-bottom: 1px solid #d2d2d7;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tr:hover {
+            background-color: #fbfbfd;
+        }
+
+        /* Rank */
+        .rank-cell {
+            width: 60px;
+            text-align: center;
+        }
+
+        .rank {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0071e3;
+        }
+
+        /* Hotspot */
+        .hotspot-cell {
+            width: 20%;
+        }
+
+        .hotspot-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 6px;
+            line-height: 1.35;
+        }
+
+        .heat-info {
+            font-size: 13px;
+            color: #ff3b30;
+            font-weight: 500;
+        }
+
+        /* Summary */
+        .summary-cell {
+            width: 24%;
+        }
+
+        .event-summary {
+            font-size: 15px;
+            color: #6e6e73;
+            line-height: 1.5;
+        }
+
+        /* Product */
+        .product-cell {
+            width: 30%;
+        }
+
+        .product-idea {
+            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #d2d2d7;
+        }
+
+        .product-name {
+            font-size: 17px;
+            font-weight: 600;
+            color: #0071e3;
+            margin-bottom: 12px;
+        }
+
+        .product-info {
+            margin-bottom: 12px;
+        }
+
+        .product-feature {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .product-feature .label {
+            color: #6e6e73;
+            font-weight: 500;
+            min-width: 60px;
+        }
+
+        .product-feature .value {
+            color: #1d1d1f;
+            flex: 1;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #6e6e73;
+            font-style: italic;
+            line-height: 1.4;
+            padding-top: 12px;
+            border-top: 1px solid #d2d2d7;
+        }
+
+        .no-idea {
+            text-align: center;
+            padding: 24px;
+            color: #86868b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .no-idea-icon {
+            font-size: 32px;
+            opacity: 0.3;
+        }
+
+        .no-idea-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .no-idea-reason {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        /* Score */
+        .score-cell {
+            width: 140px;
+            text-align: center;
+        }
+
+        .score-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .score-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .score-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .score-excellent {
+            background: linear-gradient(135deg, #34c759, #30d158);
+            color: #ffffff;
+        }
+
+        .score-good {
+            background: linear-gradient(135deg, #ff9500, #ffb340);
+            color: #ffffff;
+        }
+
+        .score-fair {
+            background: linear-gradient(135deg, #d2d2d7, #e5e5ea);
+            color: #6e6e73;
+        }
+
+        .score-number {
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .score-breakdown {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+        }
+
+        .score-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .score-item-label {
+            color: #86868b;
+            font-weight: 500;
+        }
+
+        .score-item-value {
+            color: #1d1d1f;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #d2d2d7;
+        }
+
+        .footer-text {
+            font-size: 15px;
+            color: #86868b;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .title {
+                font-size: 40px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .score-weights {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 16px;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 17px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .methodology {
+                padding: 24px;
+            }
+
+            .table-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            th, td {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .hotspot-title {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">微博热搜产品创意分析</h1>
+            <p class="subtitle">2026年01月12日</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">24</div>
+                <div class="stat-label">分析话题数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">优秀创意 (≥80分)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">13</div>
+                <div class="stat-label">良好创意 (60-79分)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">69.0</div>
+                <div class="stat-label">平均评分</div>
+            </div>
+        </div>
+
+        <div class="methodology">
+            <h3>评分方法论</h3>
+            <div class="score-weights">
+                <div class="weight-item">
+                    <strong>有趣度 (80分)</strong>
+                    <div class="weight-description">评估话题的新颖性、传播性和用户体验独特性</div>
+                </div>
+                <div class="weight-item">
+                    <strong>有用度 (20分)</strong>
+                    <div class="weight-description">评估产品的实用价值和问题解决能力</div>
+                </div>
+            </div>
+            <div class="threshold-note">
+                总分≥60分才会生成具体产品创意，确保创意的质量与可行性
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <div class="table-header">
+                <div class="table-title">热搜分析详情</div>
+                <button class="sort-button" id="sortButton">
+                    <span>按评分排序</span>
+                    <span class="sort-icon">↓</span>
+                </button>
+            </div>
+            <table id="hotspotTable">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>热点资讯</th>
+                        <th>关键事件脉络</th>
+                        <th>产品创意</th>
+                        <th>综合评分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr data-score="57">
+                <td class="rank-cell"><span class="rank">#1</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">威海暴雪</div>
+                    <div class="heat-info">热度 1,067,932</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">特朗普就台湾问题表态称台湾应为美国保护付费，暗示不会无条件保护台湾，引发台湾民众对美台关系本质的认识，相关话题阅读量破10亿。</div>
+                </td>
+                <td class="product-cell">
+                    <div class="no-idea"><span class="no-idea-icon">—</span><span class="no-idea-text">暂无可行产品创意</span><span class="no-idea-reason">总分未达60分阈值</span></div>
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-fair">
+                            <span class="score-number">57</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">45</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">12</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="70">
+                <td class="rank-cell"><span class="rank">#1</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">威海暴雪</div>
+                    <div class="heat-info">热度 1,067,932</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">2026年1月威海遭遇强降雪，交通受阻学校停课，市政启动应急预案，居民分享雪景引发热议，提醒人们关注极端天气影响。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">雪城守护</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">极端天气实时预警、社区互助地图、应急物资导航、雪景AR滤镜</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">暴雪地区居民、出行人员</span>
+                        </div>
+                    </div>
+                    <div class="product-description">集天气预警、社区互助、应急导航于一体的暴雪应对助手</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">70</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">55</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">15</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="82">
+                <td class="rank-cell"><span class="rank">#2</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">初中生网购疑似侵华日军信件</div>
+                    <div class="heat-info">热度 763,931</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">2026年1月12日山东烟台遭遇罕见暴雪，海水蒸发遇冷空气形成'海面冒烟'奇观，视频疯传。气象部门启动应急预案确保市民安全。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">天气奇观AR相机</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">识别并科普各种罕见天气现象，AR特效还原'海面冒烟'等奇观，生成科普短视频</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">天气爱好者、旅行者、科普内容创作者</span>
+                        </div>
+                    </div>
+                    <div class="product-description">拍摄天气奇观时自动识别并提供科学解释，AR特效增强视觉效果，一键生成科普短视频分享到社交平台</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-excellent">
+                            <span class="score-number">82</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">68</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">14</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="80">
+                <td class="rank-cell"><span class="rank">#2</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">初中生网购疑似侵华日军信件</div>
+                    <div class="heat-info">热度 763,931</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">初中生网购发现疑似侵华日军信件并及时上报，展现历史保护意识，引发对网络文物交易监管的讨论，专家肯定文物研究价值。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">历史守护者</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">AI文物识别、一键上报通道、历史知识科普、文物交易监测预警</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">历史爱好者、文物收藏者、中小学生</span>
+                        </div>
+                    </div>
+                    <div class="product-description">用AI技术帮助公众识别历史文物，便捷上报，守护历史记忆</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-excellent">
+                            <span class="score-number">80</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">62</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">18</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="83">
+                <td class="rank-cell"><span class="rank">#3</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">中国农民种地科技感拉满</div>
+                    <div class="heat-info">热度 600,001</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">中国农民使用无人机播种施肥、智能灌溉系统、手机APP监控农作物等高科技设备种地的视频走红，展示中国农业数字化智能化发展成果。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">智慧农场模拟器</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">模拟使用无人机、智能灌溉等高科技设备种地，学习现代农业技术，经营虚拟农场</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">对现代农业感兴趣的城市用户、农业从业者、青少年科普教育</span>
+                        </div>
+                    </div>
+                    <div class="product-description">以游戏化方式体验智慧农业，了解无人机播种、AI监控等技术，寓教于乐推广现代农业知识</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-excellent">
+                            <span class="score-number">83</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">65</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">18</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="87">
+                <td class="rank-cell"><span class="rank">#3</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">中国农民种地科技感拉满</div>
+                    <div class="heat-info">热度 600,001</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">中国农业现代化加速，无人机、北斗导航、智能传感器等高科技广泛应用于农业生产，提高效率降低劳动强度，网友感叹科技改变农业。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">农场大脑</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">一站式农业智能管理平台：卫星监测、AI种植建议、设备远程控制、产销对接</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">现代农民、农业合作社、农业创业者</span>
+                        </div>
+                    </div>
+                    <div class="product-description">让每个农民都能拥有AI农业专家，科技种地更轻松高效</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-excellent">
+                            <span class="score-number">87</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">68</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">19</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="60">
+                <td class="rank-cell"><span class="rank">#4</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">痞幼上恋综进医院</div>
+                    <div class="heat-info">热度 529,792</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">蔡依林在内地演唱会因表演内容被举报，引发关于演艺活动监管和艺术表达自由的讨论，业内提醒艺人需严格遵守相关规定。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">演出合规助手</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">为艺人团队提供演出内容合规检查清单、法规查询、风险预警功能</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">演艺经纪公司、演出策划团队、艺人工作室</span>
+                        </div>
+                    </div>
+                    <div class="product-description">帮助演出团队提前检查内容合规性，提供相关法规指引和案例参考，降低演出被举报风险</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">60</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">52</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">8</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="68">
+                <td class="rank-cell"><span class="rank">#4</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">痞幼上恋综进医院</div>
+                    <div class="heat-info">热度 529,792</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">网红痞幼参加恋综期间身体不适送医，引发粉丝关注和对综艺录制强度的讨论，呼吁节目组合理安排时间保障参与者健康。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">艺人健康卫士</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">工作强度监测、健康数据追踪、疲劳预警、休息计划建议、紧急医疗对接</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">艺人、经纪公司、节目制作方</span>
+                        </div>
+                    </div>
+                    <div class="product-description">智能监测艺人健康状态，预防过劳，保障演艺工作安全</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">68</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">52</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">16</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="65">
+                <td class="rank-cell"><span class="rank">#5</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">河南省考 进不去</div>
+                    <div class="heat-info">热度 247,769</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">林昀儒在WTT多哈冠军赛男单决赛中4:2夺冠，这是他首个WTT冠军赛系列冠军，展现出色技术和心理素质，世界排名有望提升。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">乒乓球技术分析器</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">视频识别分析球员技术动作、提供训练建议、记录个人成长数据、观看精彩赛事回放</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">乒乓球爱好者、业余球员、青少年训练者</span>
+                        </div>
+                    </div>
+                    <div class="product-description">用AI分析乒乓球技术动作，提供个性化训练建议，记录进步轨迹，学习职业球员技巧</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">65</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">55</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">10</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="66">
+                <td class="rank-cell"><span class="rank">#5</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">河南省考 进不去</div>
+                    <div class="heat-info">热度 247,769</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">河南省考当天大量考生反映无法进入考场或系统故障，人事中心紧急回应将补偿，引发对考试管理和技术测试的讨论。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">考场无忧</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">考试系统压力测试、实时监控预警、应急方案生成、考生权益保障通道</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">考试组织机构、考试中心、考生</span>
+                        </div>
+                    </div>
+                    <div class="product-description">确保大型考试系统稳定运行，保障考生权益，避免技术故障</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">66</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">48</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">18</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="83">
+                <td class="rank-cell"><span class="rank">#6</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">这居然是陈梦</div>
+                    <div class="heat-info">热度 247,462</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">一只友好小狗站在路边主动求路人抚摸走红网络，被称'社牛狗狗'，视频获500万点赞成为热门治愈系内容，传递正能量。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">萌宠打卡地图</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">标记网红萌宠位置、分享萌宠视频、查看附近可爱动物、社区互动交流</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">宠物爱好者、治愈系内容消费者、城市年轻人</span>
+                        </div>
+                    </div>
+                    <div class="product-description">发现身边的网红萌宠，记录与可爱动物的互动瞬间，分享治愈时刻，找到同好者一起'撸宠'</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-excellent">
+                            <span class="score-number">83</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">72</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">11</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="72">
+                <td class="rank-cell"><span class="rank">#6</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">这居然是陈梦</div>
+                    <div class="heat-info">热度 247,462</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">乒乓球奥运冠军陈梦全新形象照曝光，展现时尚优雅一面，与运动形象形成反差，网友感叹并称赞运动员多元化形象展现。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">反差魅力</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">AI形象设计、多风格虚拟试妆、个性化造型推荐、形象对比展示</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">年轻女性、形象改造需求者、运动员</span>
+                        </div>
+                    </div>
+                    <div class="product-description">发现你的多面魅力，AI帮你探索不同风格的自己</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">72</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">60</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">12</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="33">
+                <td class="rank-cell"><span class="rank">#7</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">造谣乐山高速ETC免费者已被依法处理</div>
+                    <div class="heat-info">热度 0</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">伊朗政府宣布全国哀悼3天，悼念近期事件遇难人员，期间降半旗、取消娱乐活动，国际社会表达关注，多国领导人慰问。</div>
+                </td>
+                <td class="product-cell">
+                    <div class="no-idea"><span class="no-idea-icon">—</span><span class="no-idea-text">暂无可行产品创意</span><span class="no-idea-reason">总分未达60分阈值</span></div>
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-fair">
+                            <span class="score-number">33</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">25</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">8</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="59">
+                <td class="rank-cell"><span class="rank">#7</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">造谣乐山高速ETC免费者已被依法处理</div>
+                    <div class="heat-info">热度 0</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">网民在社交平台散布乐山高速ETC免费的虚假信息，误导公众造成恶劣影响，警方依法处理造谣者，提醒网络不是法外之地。</div>
+                </td>
+                <td class="product-cell">
+                    <div class="no-idea"><span class="no-idea-icon">—</span><span class="no-idea-text">暂无可行产品创意</span><span class="no-idea-reason">总分未达60分阈值</span></div>
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-fair">
+                            <span class="score-number">59</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">42</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">17</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="78">
+                <td class="rank-cell"><span class="rank">#8</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">日本第一代不婚族开始后悔了</div>
+                    <div class="heat-info">热度 243,496</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">威海遭遇罕见特大暴雪，网友形容为'倾盆大瓢雪'，部分地区积雪超30厘米，导致交通大面积受阻，当地启动应急预案清雪除冰。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">极端天气生存指南</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">实时极端天气预警、应急措施指导、物资清单、周边避险点地图、社区互助信息</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">受极端天气影响地区居民、经常出差旅行的用户、应急管理人员</span>
+                        </div>
+                    </div>
+                    <div class="product-description">提供极端天气实时预警和专业应对指南，帮助用户做好防护准备，寻找周边避险资源，确保安全</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">78</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">63</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">15</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="80">
+                <td class="rank-cell"><span class="rank">#8</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">日本第一代不婚族开始后悔了</div>
+                    <div class="heat-info">热度 243,496</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">日本第一代不婚族步入老年开始后悔，面临孤独养老缺乏照料等问题，引发对个人选择与社会保障矛盾的反思和讨论。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">人生规划师</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">人生选择模拟、未来场景推演、养老规划测算、社区陪伴匹配</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">面临重大人生选择的年轻人、单身人士</span>
+                        </div>
+                    </div>
+                    <div class="product-description">用数据和AI帮你看清人生选择的长期影响，理性规划未来</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-excellent">
+                            <span class="score-number">80</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">64</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">16</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="57">
+                <td class="rank-cell"><span class="rank">#9</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">用户与AI聊黄开发者获刑</div>
+                    <div class="heat-info">热度 236,252</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">WTT多哈冠军赛中国乒乓球队男单失利，冠军被林昀儒获得，反映国际乒坛竞争激烈，中国队表示将总结经验争取更好成绩。</div>
+                </td>
+                <td class="product-cell">
+                    <div class="no-idea"><span class="no-idea-icon">—</span><span class="no-idea-text">暂无可行产品创意</span><span class="no-idea-reason">总分未达60分阈值</span></div>
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-fair">
+                            <span class="score-number">57</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">48</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">9</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="74">
+                <td class="rank-cell"><span class="rank">#9</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">用户与AI聊黄开发者获刑</div>
+                    <div class="heat-info">热度 236,252</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">AI聊天软件开发者因未制止用户生成传播色情内容被判刑，案件明确AI开发者法律责任边界，对行业具有警示意义。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">AI合规卫士</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">智能内容审核、违规风险预警、合规建议生成、法律责任评估</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">AI产品开发者、互联网平台、内容审核团队</span>
+                        </div>
+                    </div>
+                    <div class="product-description">帮助AI开发者建立内容审核体系，规避法律风险，合规运营</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">74</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">55</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">19</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="56">
+                <td class="rank-cell"><span class="rank">#10</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">社保工作人员骗养老金多少蛀虫待清理</div>
+                    <div class="heat-info">热度 231,186</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">多地曝光社保工作人员利用职务便利骗取养老金案件，暴露监管漏洞，纪检部门将严查社保腐败，专家建议完善系统堵塞漏洞。</div>
+                </td>
+                <td class="product-cell">
+                    <div class="no-idea"><span class="no-idea-icon">—</span><span class="no-idea-text">暂无可行产品创意</span><span class="no-idea-reason">总分未达60分阈值</span></div>
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-fair">
+                            <span class="score-number">56</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">38</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">18</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="68">
+                <td class="rank-cell"><span class="rank">#11</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">美人余有易梦玲</div>
+                    <div class="heat-info">热度 212,890</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">新晋演员易梦玲在《美人余》中表现出色走红，被赞为古装美人，演技颜值获认可，粉丝期待更多作品，话题阅读量超2亿。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">剧追星球</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">热播剧实时追踪、演员资料库、剧情讨论社区、同款服饰道具购买</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">影视剧爱好者、追星族、年轻观众</span>
+                        </div>
+                    </div>
+                    <div class="product-description">一站式追剧追星平台，不错过任何热播剧和爱豆动态</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">68</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">58</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">10</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="69">
+                <td class="rank-cell"><span class="rank">#12</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">我是谢娜 你现在必须去上学</div>
+                    <div class="heat-info">热度 211,412</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">网传谢娜劝学生上学视频为AI换脸伪造，工作室辟谣并准备追责，专家指出深度伪造威胁严重，提醒公众理性判断网络信息。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">真相鉴定器</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">AI换脸识别、视频真伪检测、来源溯源、一键举报通道、防伪水印生成</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">普通网民、媒体从业者、明星及其工作室</span>
+                        </div>
+                    </div>
+                    <div class="product-description">用AI对抗AI，快速识别Deepfake虚假视频，守护真实信息</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">69</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">50</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">19</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="67">
+                <td class="rank-cell"><span class="rank">#13</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">全红婵留长发了</div>
+                    <div class="heat-info">热度 208,275</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">跳水奥运冠军全红婵留长发现身活动，展现不同青春气息，粉丝称赞并表示欣慰，希望她保持竞技状态同时享受青春。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">换发新生</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">AI发型试换、脸型分析推荐、虚拟染发、发型师预约、成长变化记录</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">年轻女性、形象改造需求者、发型爱好者</span>
+                        </div>
+                    </div>
+                    <div class="product-description">AI帮你找到最适合的发型，记录每个阶段的美好变化</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">67</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">56</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">11</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="78">
+                <td class="rank-cell"><span class="rank">#14</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">单依纯官宣香奈儿</div>
+                    <div class="heat-info">热度 200,291</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">歌手单依纯宣布成为香奈儿品牌大使，标志演艺事业新里程碑，官宣大片展现优雅气质，反映中国艺人影响力提升。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">星品速递</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">明星代言实时追踪、品牌合作分析、同款商品导购、时尚趋势预测</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">粉丝群体、时尚爱好者、品牌营销人员</span>
+                        </div>
+                    </div>
+                    <div class="product-description">第一时间获取爱豆代言资讯，轻松购买明星同款时尚单品</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">78</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">66</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">12</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr data-score="65">
+                <td class="rank-cell"><span class="rank">#15</span></td>
+                <td class="hotspot-cell">
+                    <div class="hotspot-title">QQ音乐超级会员代言人</div>
+                    <div class="heat-info">热度 197,168</div>
+                </td>
+                <td class="summary-cell">
+                    <div class="event-summary">QQ音乐官宣新一任超级会员代言人，从预热海报推测可能是当红明星，引发用户和粉丝热烈讨论猜测，官方将公布身份并推福利活动。</div>
+                </td>
+                <td class="product-cell">
+                    
+                <div class="product-idea">
+                    <div class="product-name">会员星探</div>
+                    <div class="product-info">
+                        <div class="product-feature">
+                            <span class="label">核心功能</span>
+                            <span class="value">各平台会员优惠聚合、代言人资讯追踪、会员权益对比、专属福利提醒</span>
+                        </div>
+                        <div class="product-feature">
+                            <span class="label">目标用户</span>
+                            <span class="value">音乐平台用户、会员服务订阅者、明星粉丝</span>
+                        </div>
+                    </div>
+                    <div class="product-description">聚合各平台会员权益，不错过任何优惠和代言人动态</div>
+                </div>
+            
+                </td>
+                <td class="score-cell">
+                    <div class="score-container">
+                        <div class="score-badge score-good">
+                            <span class="score-number">65</span>
+                            <span class="score-label">分</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <span class="score-item-label">有趣</span>
+                                <span class="score-item-value">54</span>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-item-label">有用</span>
+                                <span class="score-item-value">11</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">
+                本报告由微博热搜分析工具自动生成<br>
+                评分标准：有趣度 80% + 有用度 20%<br>
+                生成时间：2026-01-12 06:10:42
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 排序功能
+        const sortButton = document.getElementById('sortButton');
+        const table = document.getElementById('hotspotTable');
+        const tbody = table.querySelector('tbody');
+        let isDescending = true;
+
+        // 保存原始顺序
+        const originalRows = Array.from(tbody.querySelectorAll('tr'));
+
+        sortButton.addEventListener('click', function() {
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            if (isDescending) {
+                // 按评分从高到低排序
+                rows.sort((a, b) => {
+                    const scoreA = parseFloat(a.dataset.score);
+                    const scoreB = parseFloat(b.dataset.score);
+                    return scoreB - scoreA;
+                });
+                sortButton.classList.add('desc');
+                sortButton.querySelector('span:first-child').textContent = '恢复原序';
+            } else {
+                // 恢复原始顺序
+                tbody.innerHTML = '';
+                originalRows.forEach(row => tbody.appendChild(row));
+                sortButton.classList.remove('desc');
+                sortButton.querySelector('span:first-child').textContent = '按评分排序';
+                isDescending = true;
+                return;
+            }
+
+            // 清空并重新添加排序后的行
+            tbody.innerHTML = '';
+            rows.forEach(row => tbody.appendChild(row));
+
+            isDescending = false;
+        });
+
+        // 添加平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
