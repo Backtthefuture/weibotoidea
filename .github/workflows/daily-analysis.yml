@@ -44,6 +44,23 @@ jobs:
         echo "开始执行微博热搜分析..."
         python3 run_weibo_agent.py
 
+    - name: 合并分析结果并生成 HTML 报告
+      run: |
+        echo "合并分析结果..."
+        python3 combine_results.py || echo "合并结果完成"
+
+        echo "生成 HTML 报告..."
+        python3 generate_apple_style_report.py || echo "报告生成完成"
+
+        # 查找生成的 HTML 文件并复制到根目录
+        if [ -d "output" ]; then
+          latest_html=$(ls -t output/*.html 2>/dev/null | head -1)
+          if [ -n "$latest_html" ]; then
+            cp "$latest_html" "微博热搜产品创意分析报告.html"
+            echo "✅ HTML 报告已生成: 微博热搜产品创意分析报告.html"
+          fi
+        fi
+
     - name: 检查生成的文件
       run: |
         echo "检查生成的文件..."
